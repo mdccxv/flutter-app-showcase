@@ -4,6 +4,7 @@ import 'package:flutter_demo/core/utils/either_extensions.dart';
 import 'package:flutter_demo/features/auth/domain/use_cases/log_in_use_case.dart';
 import 'package:flutter_demo/features/auth/login/login_navigator.dart';
 import 'package:flutter_demo/features/auth/login/login_presentation_model.dart';
+import 'package:flutter_demo/localization/app_localizations_utils.dart';
 
 class LoginPresenter extends Cubit<LoginViewModel> {
   LoginPresenter(
@@ -27,6 +28,6 @@ class LoginPresenter extends Cubit<LoginViewModel> {
       .observeStatusChanges((result) => emit(_model.copyWith(appLoginResult: result)))
       .asyncFold(
         (fail) => navigator.showError(fail.displayableFailure()),
-        (success) => navigator.showAlert(title: 'Login successful', message: success.username),
+        (success) => navigator.showAlert(title: appLocalizations.logInSuccessMessage, message: success.username),
       );
 }
