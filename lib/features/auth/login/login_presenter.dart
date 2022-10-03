@@ -22,7 +22,7 @@ class LoginPresenter extends Cubit<LoginViewModel> {
 
   void onPasswordChanged(String text) => emit(_model.copyWith(password: text));
 
-  void login() => logInUseCase
+  Future<void> login() => logInUseCase
       .execute(username: _model.username, password: _model.password)
       .observeStatusChanges((result) => emit(_model.copyWith(appLoginResult: result)))
       .asyncFold(
